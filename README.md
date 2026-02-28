@@ -1,12 +1,113 @@
 # TamaClock
 
-Relógio digital NTP com animação de olhinhos estilo Cozmo (Anki), rodando no **TTGO T-Display** (ESP32).
+---
+
+## 🇺🇸 English
+
+NTP digital clock with Cozmo-style (Anki) eye animation, running on the **TTGO T-Display** (ESP32).
 
 ![TamaClock](exemplos/Captura%20de%20tela%20de%202026-02-24%2021-11-17.png)
 
+### Features
+
+- **NTP Clock** — auto-sync with `pool.ntp.org`, UTC-3 (BRT) timezone, re-sync every 12h
+- **Volos-style layout** — large 7-segment HH:MM, amber seconds box, day badge and date
+- **Cozmo animation** — animated eyelids and pupils, triggered automatically every 2–5 minutes
+- **WiFiManager** — web configuration portal on first boot; credentials saved to flash
+- **Auto backlight** — reduced brightness between 10 PM and 7 AM; manual override via button
+- **Physical buttons** — control animation, brightness and Wi-Fi reset
+
+### Hardware
+
+| Item | Detail |
+|------|--------|
+| Board | TTGO T-Display (ESP32) |
+| Display | TFT ST7789, 1.14", 240×135 px |
+| Orientation | Landscape |
+| Connectivity | Built-in Wi-Fi |
+
+### Display Layout
+
+```
+┌──────────────────────────────────────┐
+│           Tamaclock                  │  ← title (cyan)
+│  HH:MM              [SS]             │  ← time (white) + seconds (amber)
+│                                      │
+├──────────────────────────────────────┤
+│  [DAY]   MON, DD        by @jeroavf │  ← day badge + date + signature
+└──────────────────────────────────────┘
+```
+
+### Buttons
+
+| Button | Action | Threshold |
+|--------|--------|-----------|
+| GPIO 35 — short press | Trigger Cozmo animation immediately | < 2 s |
+| GPIO 35 — long press | Toggle manual brightness DAY ↔ NIGHT | ≥ 2 s |
+| GPIO 0 — long press | Erase Wi-Fi credentials and reboot | ≥ 3 s |
+
+### Project Structure
+
+```
+tamaclock/
+├── tamaclock.ino       # setup(), loop(), handleButtons()
+├── clock_face.h/.cpp   # clock screen (Volos style)
+├── eyes_anim.h/.cpp    # Cozmo eye animation (FluxGarage RoboEyes)
+├── ntp_sync.h/.cpp     # NTP sync
+├── wifi_setup.h/.cpp   # WiFiManager + wifiReset()
+├── tft_adapter.h       # TFT_eSprite → RoboEyes adapter
+└── config.h            # global constants
+```
+
+### Dependencies
+
+Install via Arduino Library Manager:
+
+| Library | Purpose |
+|---------|---------|
+| [TFT_eSPI](https://github.com/Bodmer/TFT_eSPI) | ST7789 display driver |
+| [WiFiManager](https://github.com/tzapu/WiFiManager) | Wi-Fi configuration portal |
+| [FluxGarage RoboEyes](https://github.com/FluxGarage/RoboEyes) | Eye animation |
+
+> **TFT_eSPI:** configure `User_Setup.h` for TTGO T-Display before compiling.
+
+### Build & Upload
+
+Requires [arduino-cli](https://arduino.github.io/arduino-cli/) with the `esp32:esp32` core installed.
+
+```bash
+# Compile
+arduino-cli compile --fqbn esp32:esp32:esp32 tamaclock/
+
+# Upload (default port: /dev/ttyACM0)
+arduino-cli upload --fqbn esp32:esp32:esp32 --port /dev/ttyACM0 tamaclock/
+
+# Serial monitor
+arduino-cli monitor --port /dev/ttyACM0 --config baudrate=115200
+```
+
+### Wi-Fi Setup
+
+On first boot (or after a Wi-Fi reset):
+
+1. The device creates a Wi-Fi network called **`TamaClock-Config`**
+2. Connect to it from your phone or computer
+3. Open `192.168.4.1` and enter your network credentials
+4. The device reboots and connects automatically
+
+To reset credentials: hold **GPIO 0 button for 3 seconds**.
+
+### License
+
+MIT — see [LICENSE](LICENSE).
+
 ---
 
-## Funcionalidades
+## 🇧🇷 Português
+
+Relógio digital NTP com animação de olhinhos estilo Cozmo (Anki), rodando no **TTGO T-Display** (ESP32).
+
+### Funcionalidades
 
 - **Relógio NTP** — sincronização automática com `pool.ntp.org`, fuso UTC-3 (BRT), re-sync a cada 12h
 - **Layout estilo Volos** — HH:MM em fonte 7-segmentos grande, caixa de segundos âmbar, badge do dia e data
@@ -15,9 +116,7 @@ Relógio digital NTP com animação de olhinhos estilo Cozmo (Anki), rodando no 
 - **Backlight automático** — brilho reduzido entre 22h e 7h; override manual pelo botão
 - **Botões físicos** — controle de animação, brilho e reset de Wi-Fi
 
----
-
-## Hardware
+### Hardware
 
 | Item | Detalhe |
 |------|---------|
@@ -26,9 +125,7 @@ Relógio digital NTP com animação de olhinhos estilo Cozmo (Anki), rodando no 
 | Orientação | Landscape |
 | Conectividade | Wi-Fi integrado |
 
----
-
-## Layout do Display
+### Layout do Display
 
 ```
 ┌──────────────────────────────────────┐
@@ -40,9 +137,7 @@ Relógio digital NTP com animação de olhinhos estilo Cozmo (Anki), rodando no 
 └──────────────────────────────────────┘
 ```
 
----
-
-## Botões
+### Botões
 
 | Botão | Ação | Threshold |
 |-------|------|-----------|
@@ -50,9 +145,7 @@ Relógio digital NTP com animação de olhinhos estilo Cozmo (Anki), rodando no 
 | GPIO 35 — pressão longa | Alterna brilho manual DIA ↔ NOITE | ≥ 2 s |
 | GPIO 0 — pressão longa | Apaga credenciais Wi-Fi e reinicia | ≥ 3 s |
 
----
-
-## Estrutura do Projeto
+### Estrutura do Projeto
 
 ```
 tamaclock/
@@ -65,9 +158,7 @@ tamaclock/
 └── config.h            # constantes globais
 ```
 
----
-
-## Dependências
+### Dependências
 
 Instalar via Arduino Library Manager:
 
@@ -79,9 +170,7 @@ Instalar via Arduino Library Manager:
 
 > **TFT_eSPI:** configure o `User_Setup.h` para TTGO T-Display antes de compilar.
 
----
-
-## Compilar e Upload
+### Compilar e Upload
 
 Requer [arduino-cli](https://arduino.github.io/arduino-cli/) com o core `esp32:esp32` instalado.
 
@@ -96,9 +185,7 @@ arduino-cli upload --fqbn esp32:esp32:esp32 --port /dev/ttyACM0 tamaclock/
 arduino-cli monitor --port /dev/ttyACM0 --config baudrate=115200
 ```
 
----
-
-## Configuração Wi-Fi
+### Configuração Wi-Fi
 
 Na primeira inicialização (ou após reset de Wi-Fi):
 
@@ -109,8 +196,6 @@ Na primeira inicialização (ou após reset de Wi-Fi):
 
 Para redefinir as credenciais: segure o **botão GPIO 0 por 3 segundos**.
 
----
-
-## Licença
+### Licença
 
 MIT — veja [LICENSE](LICENSE).

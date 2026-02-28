@@ -1,5 +1,7 @@
 # TamaClock — Especificação do Projeto
 
+**Repositório:** https://github.com/jeroavf/tamaclock
+
 ## Visão Geral
 Relógio digital com sincronização NTP e animação de olhinhos estilo Cozmo (Anki), exibido no display integrado do TTGO T-Display.
 
@@ -176,6 +178,19 @@ BOOT
 - [x] GPIO 35 curto: dispara animação manualmente
 - [x] GPIO 35 longo: toggle brilho DIA ↔ NOITE
 - [x] GPIO 0 longo: reset WiFi + reinício
+
+### Fase 6 — Design Final ✅
+- [x] Título "Tamaclock" centralizado no topo (Font2, cyan, y=2)
+- [x] Assinatura "by @jeroavf" canto inferior direito (Font1, preto/branco, y=131)
+- [x] Segundos com Font7 (igual HH:MM), caixa ajustada (165,18,72,52)
+- [x] Badge dia com Font4 (igual data), caixa ajustada (5,93,62,37)
+
+### Fase 7 — Publicação ✅
+- [x] README bilíngue (EN + PT) com layout, botões, dependências, referências
+- [x] Licença MIT
+- [x] Repositório Git local (branch main)
+- [x] Repositório GitHub público: https://github.com/jeroavf/tamaclock
+- [x] 12 topics: esp32, arduino, ttgo-t-display, ntp-clock, digital-clock, tft-espi, wifimanager, animation, iot, embedded, st7789, esp32-arduino
 
 ---
 

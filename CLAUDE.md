@@ -4,9 +4,9 @@
 Relógio digital com NTP e animação de olhinhos estilo Cozmo (Anki), rodando em TTGO T-Display (ESP32).
 
 ## Status atual
-**Todas as fases concluídas (0–5). Código testado e funcionando no hardware.**
+**Todas as fases concluídas (0–5). Código testado, funcionando no hardware e publicado no GitHub.**
 
-Hardware validado em 2026-02-28. Botões físicos implementados e operacionais.
+Hardware validado em 2026-02-28. Repositório público: https://github.com/jeroavf/tamaclock
 
 ## Hardware
 - Placa: **TTGO T-Display** (ESP32)
@@ -36,14 +36,20 @@ Hardware validado em 2026-02-28. Botões físicos implementados e operacionais.
 
 ## Estrutura de arquivos
 ```
-tamaclock/
-├── tamaclock.ino       # setup(), loop(), handleButtons()
-├── clock_face.h/.cpp   # tela do relógio (estilo Volos)
-├── eyes_anim.h/.cpp    # animação olhos Cozmo
-├── ntp_sync.h/.cpp     # NTP e gerência de tempo
-├── wifi_setup.h/.cpp   # WiFiManager + wifiReset()
-├── tft_adapter.h       # adapter TFT_eSprite → RoboEyes
-└── config.h            # constantes globais (display, cores, botões, NTP, animação)
+tamaclock/               # raiz do repositório git
+├── README.md            # documentação bilíngue (EN + PT)
+├── LICENSE              # MIT
+├── .gitignore
+├── CLAUDE.md            # este arquivo
+├── SPEC.md              # especificação detalhada
+└── tamaclock/           # código-fonte Arduino
+    ├── tamaclock.ino    # setup(), loop(), handleButtons()
+    ├── clock_face.h/.cpp  # tela do relógio (estilo Volos)
+    ├── eyes_anim.h/.cpp   # animação olhos Cozmo
+    ├── ntp_sync.h/.cpp    # NTP e gerência de tempo
+    ├── wifi_setup.h/.cpp  # WiFiManager + wifiReset()
+    ├── tft_adapter.h      # adapter TFT_eSprite → RoboEyes
+    └── config.h           # constantes globais
 ```
 
 ## Constantes principais (config.h)
@@ -96,6 +102,8 @@ arduino-cli monitor --port /dev/ttyACM0 --config baudrate=115200
 - [x] Fase 3 — Animação Cozmo (RoboEyes via TFTSpriteAdapter)
 - [x] Fase 4 — Ajustes visuais: layout Volos, PWM backlight, autoblink, randomSeed
 - [x] Fase 5 — Botões físicos: animação manual, toggle brilho, reset WiFi
+- [x] Fase 6 — Design final: título "Tamaclock", assinatura "by @jeroavf", fontes revisadas
+- [x] Fase 7 — Publicação: README bilíngue, LICENSE MIT, repositório GitHub
 
 ## Spec completa
 Ver `SPEC.md` na raiz do projeto.

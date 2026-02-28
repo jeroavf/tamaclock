@@ -97,6 +97,20 @@ On first boot (or after a Wi-Fi reset):
 
 To reset credentials: hold **GPIO 0 button for 3 seconds**.
 
+### References & Acknowledgements
+
+This project stands on the shoulders of great open-source work:
+
+- **[TFT_eSPI](https://github.com/Bodmer/TFT_eSPI)** by [Bodmer](https://github.com/Bodmer) — the excellent display driver that makes smooth rendering possible on ESP32 with ST7789.
+
+- **[WiFiManager](https://github.com/tzapu/WiFiManager)** by [tzapu](https://github.com/tzapu) — hassle-free Wi-Fi provisioning with a captive portal, no hardcoded credentials.
+
+- **[FluxGarage RoboEyes](https://github.com/FluxGarage/RoboEyes)** by [FluxGarage](https://github.com/FluxGarage) — the delightful animated eye library that brings the Cozmo personality to life.
+
+- **[VolosR](https://github.com/VolosR)** — visual design inspiration for the Volos-style clock layout (large 7-segment digits, color blocks, dark background).
+
+- **[Espressif ESP32 Arduino Core](https://github.com/espressif/arduino-esp32)** — the foundation that makes Arduino development on ESP32 possible.
+
 ### License
 
 MIT — see [LICENSE](LICENSE).
@@ -195,6 +209,20 @@ Na primeira inicialização (ou após reset de Wi-Fi):
 4. O dispositivo reinicia e conecta automaticamente
 
 Para redefinir as credenciais: segure o **botão GPIO 0 por 3 segundos**.
+
+### Referências e Agradecimentos
+
+Este projeto foi construído sobre o trabalho de grandes projetos open-source:
+
+- **[TFT_eSPI](https://github.com/Bodmer/TFT_eSPI)** por [Bodmer](https://github.com/Bodmer) — excelente driver de display que viabiliza renderização suave no ESP32 com ST7789.
+
+- **[WiFiManager](https://github.com/tzapu/WiFiManager)** por [tzapu](https://github.com/tzapu) — configuração de Wi-Fi sem esforço via portal captivo, sem credenciais no código.
+
+- **[FluxGarage RoboEyes](https://github.com/FluxGarage/RoboEyes)** por [FluxGarage](https://github.com/FluxGarage) — a encantadora biblioteca de olhos animados que dá personalidade Cozmo ao projeto.
+
+- **[VolosR](https://github.com/VolosR)** — inspiração visual para o layout de relógio estilo Volos (dígitos 7-segmentos grandes, blocos coloridos, fundo escuro).
+
+- **[Espressif ESP32 Arduino Core](https://github.com/espressif/arduino-esp32)** — a base que torna possível o desenvolvimento Arduino no ESP32.
 
 ### Licença
 
